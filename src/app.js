@@ -25,13 +25,13 @@ const validateNumbers = (num1, num2, result) => {
 app.post('/add', (req, res) => {
     const { num1, num2 } = req.body;
     if (typeof num1 !== 'number' || typeof num2 !== 'number') {
-        return res.json({ status: 'error', message: 'Invalid data types' });
+        return res.status(400).json({ status: 'error', message: 'Invalid data types' });
     }
     const result = num1 + num2;
     const validationError = validateNumbers(num1, num2, result);
 
     if (validationError) {
-        res.json(validationError);
+        res.status(400).json(validationError);
     } else {
         res.json({ result });
     }
@@ -41,13 +41,13 @@ app.post('/add', (req, res) => {
 app.post('/subtract', (req, res) => {
     const { num1, num2 } = req.body;
     if (typeof num1 !== 'number' || typeof num2 !== 'number') {
-        return res.json({ status: 'error', message: 'Invalid data types' });
+        return res.status(400).json({ status: 'error', message: 'Invalid data types' });
     }
     const result = num1 - num2;
     const validationError = validateNumbers(num1, num2, result);
 
     if (validationError) {
-        res.json(validationError);
+        res.status(400).json(validationError);
     } else {
         res.json({ result });
     }
@@ -57,13 +57,13 @@ app.post('/subtract', (req, res) => {
 app.post('/multiply', (req, res) => {
     const { num1, num2 } = req.body;
     if (typeof num1 !== 'number' || typeof num2 !== 'number') {
-        return res.json({ status: 'error', message: 'Invalid data types' });
+        return res.status(400).json({ status: 'error', message: 'Invalid data types' });
     }
     const result = num1 * num2;
     const validationError = validateNumbers(num1, num2, result);
 
     if (validationError) {
-        res.json(validationError);
+        res.status(400).json(validationError);
     } else {
         res.json({ result });
     }
@@ -73,16 +73,16 @@ app.post('/multiply', (req, res) => {
 app.post('/divide', (req, res) => {
     const { num1, num2 } = req.body;
     if (typeof num1 !== 'number' || typeof num2 !== 'number') {
-        return res.json({ status: 'error', message: 'Invalid data types' });
+        return res.status(400).json({ status: 'error', message: 'Invalid data types' });
     }
     if (num2 === 0) {
-        return res.json({ status: 'error', message: 'Cannot divide by zero' });
+        return res.status(400).json({ status: 'error', message: 'Cannot divide by zero' });
     }
     const result = num1 / num2;
     const validationError = validateNumbers(num1, num2, result);
 
     if (validationError) {
-        res.json(validationError);
+        res.status(400).json(validationError);
     } else {
         res.json({ result });
     }
