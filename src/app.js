@@ -71,8 +71,10 @@ app.post('/multiply', (req, res) => {
 
 // POST endpoint to check if num2 is 0 and get the result after dividing two numbers
 app.post('/divide', (req, res) => {
-    const { num1, num2 } = req.body;
-    if (typeof num1 !== 'number' || typeof num2 !== 'number') {
+    const num1 = parseFloat(req.body.num1);
+    const num2 = parseFloat(req.body.num2);
+
+    if (isNaN(num1) || isNaN(num2)) {
         return res.status(400).json({ status: 'error', message: 'Invalid data types' });
     }
     if (num2 === 0) {
@@ -87,6 +89,7 @@ app.post('/divide', (req, res) => {
         res.json({ result });
     }
 });
+
 
 const server = app.listen(4000, () => {
     console.log(`Server running on port 4000`);
