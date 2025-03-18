@@ -83,9 +83,10 @@ app.post('/divide', (req, res) => {
     if (isNaN(num1) || isNaN(num2)) {
         return res.status(400).json({ result: 'Invalid data types' });
     }
-    if (num2 === 0) {
-        return res.status(400).json({ result: 'Cannot divide by zero' });
-    }
+  if (num2 === 0) {
+    return res.status(400).json({ message: 'Cannot divide by zero' }); // Change "result" to "message"
+}
+
     
     const result = num1 / num2;
     const validationError = validateNumbers(num1, num2, result);
