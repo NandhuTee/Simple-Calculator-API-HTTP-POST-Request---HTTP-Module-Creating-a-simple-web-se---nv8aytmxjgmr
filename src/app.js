@@ -81,21 +81,21 @@ app.post('/divide', (req, res) => {
     const num2 = parseFloat(req.body.num2);
 
     if (isNaN(num1) || isNaN(num2)) {
-        return res.status(400).json({ status: 'error', message: 'Invalid data types' });
+        return res.status(400).json({ result: 'Invalid data types' });
     }
-
     if (num2 === 0) {
-        return res.status(400).json({ status: 'error', message: 'Cannot divide by zero' });
+        return res.status(400).json({ result: 'Cannot divide by zero' });
     }
-
+    
     const result = num1 / num2;
     const validationError = validateNumbers(num1, num2, result);
 
     if (validationError) {
-        res.status(400).json(validationError);
+        res.status(400).json({ result: validationError.message });
     } else {
         res.json({ result });
     }
 });
+
 
 module.exports = app;
